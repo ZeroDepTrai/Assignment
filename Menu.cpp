@@ -11,10 +11,10 @@ using namespace std;
 // ================= Danh Cho Quan Ly Hoc Sinh =================
 struct HocSinh {
     wstring ten;
-    double toan;
-    double ly;
-    double hoa;
-    float diemTB;
+    double toan = 0.0;
+    double ly = 0.0;
+    double hoa = 0.0;
+    float diemTB = 0.0f;
     wstring xepLoai;
 };
 
