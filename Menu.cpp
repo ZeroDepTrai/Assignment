@@ -45,8 +45,8 @@ private:
         return result;
     }
 
-   
-    string ws2s(const wstring& ws) {
+    string ws2s(const wstring& ws)
+    {
         return string(ws.begin(), ws.end());
     }
 
