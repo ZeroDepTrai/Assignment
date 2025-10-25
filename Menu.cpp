@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <sstream>
@@ -504,31 +504,32 @@ int main() {
             double sotien = nhaptienvay();
             double tiengoc = tiengocphaitramoithang(sotien);
             double tienconlai = sotien;
+
             cout << fixed << setprecision(0);
             cout << "\n=== BANG TINH LAI VAY 12 THANG ===" << endl;
-
-            cout << left << setw(8) << "Ky han" << "|"
-                << setw(14) << "Lai phai tra" << "|"
-                << setw(13) << "Goc phai tra" << "|"
-                << setw(19) << "So tien phai tra" << "|"
-                << setw(17) << "So tien con lai" << endl;
-            cout << "--------|--------------|-------------|-------------------|----------------" << endl;
+            cout << "Thang | Lai phai tra | Goc phai tra | So tien phai tra | So tien con lai" << endl;
+            cout << "------|--------------|--------------|------------------|----------------" << endl;
 
             for (int thang = 1; thang <= 12; thang++) {
                 double lai = tinhlaisuat(tienconlai);
-                double tongtra = tongtiencanphaitra(lai, tiengoc);
+                double goc_thang_nay = tiengoc;
 
-                cout << left << setw(8) << thang << "|"
-                    << right << setw(14) << lai << "|"
-                    << setw(13) << tiengoc << "|"
-                    << setw(19) << tongtra << "|"
-                    << setw(17) << tienconlai << endl;
+                if (thang == 12) {
+                    goc_thang_nay = tienconlai;
+                }
 
-                tienconlai = sotienconlaisaukhitrulaigoc(tienconlai, tiengoc);
+                double tongtra = lai + goc_thang_nay;
+
+                cout << setw(5) << thang << " | "
+                    << setw(12) << lai << " | "
+                    << setw(12) << goc_thang_nay << " | "
+                    << setw(16) << tongtra << " | "
+                    << setw(15) << (tienconlai - goc_thang_nay) << endl;
+
+                tienconlai -= goc_thang_nay;
             }
             break;
         }
-
         case 7: {
             vaytienmuaxe();
             break;
