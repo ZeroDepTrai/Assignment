@@ -275,8 +275,8 @@ public:
         }
 
         wcout << L"\n=== DANH SACH HOC SINH ===" << endl;
-        wcout << L"STT | Ten hoc sinh       | Toan | Ly  | Hoa | DTB  | Xep loai" << endl;
-        wcout << L"----|--------------------|------|-----|-----|------|----------" << endl;
+        wcout << L"STT | Ten hoc sinh       | Toan  | Ly    | Hoa   | DTB   | Xep loai" << endl;
+        wcout << L"----|--------------------|-------|-------|-------|-------|----------" << endl;
 
         for (int i = 0; i < danhSach.size(); i++) {
             const auto& hs = danhSach[i];
@@ -454,8 +454,8 @@ int main() {
             int bscnn = BSCNN(x, y);
 
             cout << "\nKET QUA:" << endl;
-            cout << "USCLN(" << x << ", " << y << ") = " << uscln << endl;
-            cout << "BSCNN(" << x << ", " << y << ") = " << bscnn << endl;
+            cout << "USCLN(" << x << "," << y << ") = " << uscln << endl;
+            cout << "BSCNN(" << x << "," << y << ") = " << bscnn << endl;
             break;
         }
 
@@ -506,12 +506,24 @@ int main() {
             double tienconlai = sotien;
             cout << fixed << setprecision(0);
             cout << "\n=== BANG TINH LAI VAY 12 THANG ===" << endl;
-            cout << "Ky han | Lai phai tra | Goc phai tra | So tien phai tra | So tien con lai" << endl;
-            cout << "-----------------------------------------------------------------------" << endl;
+
+            cout << left << setw(8) << "Ky han" << "|"
+                << setw(14) << "Lai phai tra" << "|"
+                << setw(13) << "Goc phai tra" << "|"
+                << setw(19) << "So tien phai tra" << "|"
+                << setw(17) << "So tien con lai" << endl;
+            cout << "--------|--------------|-------------|-------------------|----------------" << endl;
+
             for (int thang = 1; thang <= 12; thang++) {
                 double lai = tinhlaisuat(tienconlai);
                 double tongtra = tongtiencanphaitra(lai, tiengoc);
-                cout << thang << "      | " << lai << "     | " << tiengoc << "     | " << tongtra << "         | " << tienconlai << endl;
+
+                cout << left << setw(8) << thang << "|"
+                    << right << setw(14) << lai << "|"
+                    << setw(13) << tiengoc << "|"
+                    << setw(19) << tongtra << "|"
+                    << setw(17) << tienconlai << endl;
+
                 tienconlai = sotienconlaisaukhitrulaigoc(tienconlai, tiengoc);
             }
             break;
@@ -553,7 +565,7 @@ int main() {
                 case 7: ql.ghiFileCSV(); break;
                 case 0:
                     ql.ghiFileCSV(); // TU DONG LUU KHI THOAT
-                    cout << "Tam biet!" << endl;
+                    cout << "Tam biet!" << endl;    
                     break;
                 default:
                     cout << "Lua chon khong hop le!" << endl;
@@ -813,18 +825,25 @@ void vaytienmuaxe() {
     cout << "========================================" << endl;
 
     cout << "\n=== BANG TINH TOAN CHI TIET (12 thang dau) ===" << endl;
-    cout << "Thang | Lai phai tra | Goc phai tra | So tien phai tra | So tien con lai" << endl;
-    cout << "-----------------------------------------------------------------------" << endl;
+    cout << left << setw(6) << "Thang" << "|"
+        << right << setw(15) << "Lai phai tra" << "|"
+        << setw(15) << "Goc phai tra" << "|"
+        << setw(20) << "So tien phai tra" << "|"
+        << setw(18) << "So tien con lai" << endl;
+    cout << "------|---------------|---------------|--------------------|------------------" << endl;
 
     double tien_con_lai = so_tien_vay;
-    cout << fixed << setprecision(0);
 
     for (int thang = 1; thang <= 12; thang++) {
         double lai_thang = tien_con_lai * lai_suat_thang;
         double goc_thang = tien_tra_hang_thang - lai_thang;
         double tong_tra_thang = tien_tra_hang_thang;
 
-        cout << thang << "     | " << lai_thang << "     | " << goc_thang << "     | " << tong_tra_thang << "         | " << tien_con_lai << endl;
+        cout << left << setw(6) << thang << "|"
+            << right << setw(15) << fixed << setprecision(0) << lai_thang << "|"
+            << setw(15) << goc_thang << "|"
+            << setw(20) << tong_tra_thang << "|"
+            << setw(18) << tien_con_lai << endl;
 
         tien_con_lai -= goc_thang;
         if (tien_con_lai < 0) tien_con_lai = 0;
